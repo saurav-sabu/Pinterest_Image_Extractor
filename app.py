@@ -14,7 +14,7 @@ def extract_image_url(tag,num_images):
     url = f'''https://in.pinterest.com/search/pins/?q={tag}'''
 
     try:
-        browser = webdriver.Chrome()
+        browser = webdriver.Chrome(r"chromedriver_linux64\chromedriver")
 
     except:
         st.warning("not found")
