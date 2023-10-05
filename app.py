@@ -11,14 +11,13 @@ import requests
 import shutil
 import os
 
-@st.experimental_singleton
-def get_driver():
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
 options = Options()
 options.add_argument('--disable-gpu')
 options.add_argument('--headless')
 
+@st.experimental_singleton
+def get_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 
 def extract_image_url(tag,num_images):
