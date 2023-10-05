@@ -2,10 +2,24 @@ import streamlit as st
 import pandas as pd
 from time import sleep
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 
 import requests
 import shutil
+import os
+
+@st.experimental_singleton
+def get_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+options = Options()
+options.add_argument('--disable-gpu')
+options.add_argument('--headless')
+
+
 
 def extract_image_url(tag,num_images):
 
@@ -14,8 +28,7 @@ def extract_image_url(tag,num_images):
     url = f'''https://in.pinterest.com/search/pins/?q={tag}'''
 
     try:
-        browser = webdriver.Chrome(r"chromedriver_linux64\chromedriver")
-
+        browser = get_driver()
     except:
         st.warning("not found")
 
@@ -86,7 +99,6 @@ if st.button("Scrape Images"):
         # Provide a download link to the user
         st.success(f"Downloaded {len(image_urls)} images. [Download ZIP](downloaded_images.zip)")
                 
-            
         st.success(f"Downloaded {len(image_urls)} images.")
 
 
