@@ -42,7 +42,7 @@ def extract_image_url(tag,num_images):
     
     # browser = get_driver()
 
-    # browser.get(url)
+    browser.get(url)
 
     for _ in range(1,5):
         browser.execute_script("window.scrollTo(0,10000)")
