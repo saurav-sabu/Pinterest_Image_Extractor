@@ -16,7 +16,7 @@ options = Options()
 options.add_argument('--disable-gpu')
 options.add_argument('--headless')
 
-@st.experimental_memo
+
 def get_driver():
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
