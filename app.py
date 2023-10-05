@@ -11,26 +11,14 @@ import requests
 import shutil
 import os
 
-@st.experimental_singleton
-def installff():
-  os.system('sbase install geckodriver')
-  os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
 
-_ = installff()
-from selenium import webdriver
-from selenium.webdriver import FirefoxOptions
-opts = FirefoxOptions()
-opts.add_argument("--headless")
-browser = webdriver.Firefox(options=opts)
+options = Options()
+options.add_argument('--disable-gpu')
+options.add_argument('--headless')
 
-
-# options = Options()
-# options.add_argument('--disable-gpu')
-# options.add_argument('--headless')
-
-# @st.experimental_memo
-# def get_driver():
-#     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+@st.experimental_memo
+def get_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 
 def extract_image_url(tag,num_images):
@@ -40,7 +28,7 @@ def extract_image_url(tag,num_images):
     url = f'''https://in.pinterest.com/search/pins/?q={tag}'''
 
     
-    # browser = get_driver()
+    browser = get_driver()
 
     browser.get(url)
 
