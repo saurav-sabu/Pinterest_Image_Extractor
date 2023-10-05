@@ -52,7 +52,7 @@ def extract_image_url(tag,num_images):
 st.title("PINTEREST IMAGE EXTRACTOR")
 
 tag = st.text_input("Enter the tag:")
-num_of_images = int(st.number_input("Number of Images Required:",min_value=0,value=0))
+num_of_images = (st.number_input("Number of Images Required:",min_value=0,value=0))
 
 if tag != "" and num_of_images!=0:
     extracted_url_csv,file_name = extract_image_url(tag,num_of_images)
