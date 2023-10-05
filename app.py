@@ -23,7 +23,6 @@ def get_driver():
 
 def extract_image_url(tag,num_images):
 
-    st.write("Hello world")
     image_url = []
 
     url = f'''https://in.pinterest.com/search/pins/?q={tag}'''
