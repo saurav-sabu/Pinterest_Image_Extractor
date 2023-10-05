@@ -26,10 +26,8 @@ def extract_image_url(tag,num_images):
 
     url = f'''https://in.pinterest.com/search/pins/?q={tag}'''
 
-    try:
-        browser = get_driver()
-    except:
-        st.warning("not found")
+    
+    browser = get_driver()
 
     browser.get(url)
 
